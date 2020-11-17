@@ -22,10 +22,14 @@ SRR7591069
 for r in $SRR
 do
 
-  fastq-dump -X 5 $r
+  fastq-dump $r
 
 # Rename sequence names, trinity need that their name ends with "/1" for R1 and "/2" for R2.
 
-#awk  '{ if (NR%2 == 1 ) {gsub("\\.","_");print $1"/1"}  else  { print $0}}' 
+awk  '{ if (NR%2 == 1 ) {gsub("\\.","_");print $1"/1"}  else  { print $0}}' $r.fastq > $r.fastq.modif 
+
+#Rename the modified fastq to fastq
+
+mv $r.fastq.modif $r.fastq
 
 done
