@@ -3,11 +3,13 @@
 #Create a list containing the path of each fastq file 
 data="/home/rstudio/data/mydatalocal/data"
 FASTQ=$(ls $data/sra_data/*.fastq |paste -s -d, -)
-echo "$FASTQ"
+#echo "$FASTQ" to check if $FASTQ is composed of a list of fastq files path as expected
+
 
 #Create a folder to stock the output of Trinity
 cd $data
 mkdir -p trinity_data
+
 
 #Run Trinity 
 Trinity --seqType fq --single $FASTQ --SS_lib_type R --max_memory 50G \
