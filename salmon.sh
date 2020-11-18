@@ -1,6 +1,6 @@
 #!/bin/bash
 
-## Run salmon
+#Set working directory
 data="/home/rstudio/data/mydatalocal/data"
 cd $data
 
@@ -10,11 +10,11 @@ mkdir -p quantification_data
 
 #Create a list of path of FASTQ files to use
 FASTQ=$(ls $data/sra_data/*.fastq)
-echo "$FASTQ"
+#echo "$FASTQ"
 
 
 # Index the transcriptome, needed only once (independent of the reads)
-#salmon index -t trinity_data/Trinity.fasta -i $data/salmon_index -k 29
+salmon index -t trinity_data/Trinity.fasta -i $data/salmon_index -k 29
 
 
 # Quantification, for each FASTQ file.
