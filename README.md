@@ -1,7 +1,7 @@
 # TP NGS clownfish 2020
 
 ## Scientific question 
-White tissues in Actinopterygean fishes can be due to iridophores (reflective tissue) or blabla 
+White tissues in Actinopterygean fishes can be due to iridophores (reflective tissue) or leucophores (white tissue). Fir instance, zebra fish _Danio rerio_'s white stripes are due to iridophores, whereas  
 
 ![screenshot](clownfish.jpeg) 
 ### Dataset used 
