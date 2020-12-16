@@ -3,6 +3,8 @@
 # Create a working directory:
 data="/home/rstudio/data/mydatalocal/data"
 mkdir -p $data
+
+#Go in the working directory
 cd $data
 
 # Create a directory where the data will be downloaded
