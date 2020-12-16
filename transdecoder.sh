@@ -6,6 +6,7 @@ cd $data
 #Create a folder to store the output of TransDecoder
 mkdir -p transdecoder_data
 cd transdecoder_data
+#Attention, transdecoder generates files in the current directory
 
 # Launch Transdecoder
 # Work in 2 or 3 steps (the second is facultative)
