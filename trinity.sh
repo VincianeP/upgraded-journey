@@ -1,8 +1,10 @@
 #!/bin/bash
   
 #Create a list containing the path of each fastq file 
+
 data="/home/rstudio/data/mydatalocal/data"
 FASTQ=$(ls $data/sra_data/*.fastq |paste -s -d, -)
+
 #echo "$FASTQ" to check if $FASTQ is composed of a list of fastq files path as expected
 
 
