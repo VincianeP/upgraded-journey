@@ -3,7 +3,7 @@
 ## Scientific question 
 White tissues in Actinopterygean fishes can be due to iridophores (reflective tissue) or blabla 
 
-![screenshot](clownfish.jpeg)
+![screenshot](clownfish.jpeg) 
 ### Dataset used 
 We analyzed RNA-seq data from 6 different conditions:
 SRR7591064 - Orange skin - ind 2
