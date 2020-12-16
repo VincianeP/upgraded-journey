@@ -8,13 +8,11 @@ cd blast_data
 
 mkdir -p blast_db
 
-db=$data/blast_data/blast_db/Spartitus_db.??
+db=$data/blast_data/blast_db/Spartitus_db
 
-#build reference database from the renamed reference genome (S.partitus) (seqtype=1)
-makeblastdb -seqtype 1 -in $data/ref_genome/s.partitus_renom.fa -title $db
+#build reference database from the renamed reference genome (S.partitus) 
+makeblastdb -in $data/ref_genome/s.partitus_renom.fa -out $db -dbtype nucl
 
 #blast fasta against the ref database (db). query=input?
-blastn -db $db -query $data/transdecoder_data/?? -evalue $evalue -outfmt 6 -out $data/blast_data
+blastn -db $db -query $data/transdecoder_data/Trinity.fasta.transdecoder.renamed.cds -evalue 1e-10 -outfmt 6 -out $data/blast_data/blast
 
-
-Rscript --vanilla  annote_fasta_from_blast.R $out_blast 
