@@ -92,9 +92,21 @@ A MA plot is graph showing the log2FoldChange of transcripts as a function of lo
 
 Both the function _results_ and _lfcShrink_ were used in this analysis, in order to compare them. _results_ shows a log2FoldChange dependent on log10(baseMean), whereas this relation is weakened with the function _lfcShrink_. This ...
 
+_add an image_
+
 #### Volcano plot construction 
 A volcano plot is a graph showing the -log10(padj) as a function of log2FoldChange. we therefore see in the upper left part of the graph genes significatively less expressed in orange skin (and reciprocally more expressed in white skin), and in the upper right part genes significantly more expressed in orange skin (and less expressed in white skin). 
 
+_add an image_
+
+#### PCA construction
+
+_add an image_
+
+We see that the second component efficiently separates the samples on the skin color. However, it might be surprising to see at first that the principal component seem to separate individuals within a same skin color. This means that the variation between individuals is great in this experiment, likely because the individuals do not come from an homogenous genetic background.  
+
 #### Manual annotation of top differentially expressed genes
+
+We recovered 16 genes upregulated in orange skin with a adjusted p-value <1e-10, and 14 downregulated genes in orange skin with an adjusted p-value <1e-10. We used the blast output to recover gene names from Trinity transcript ID of the top differentially expressed genes (meaning those with the lower adjusted p-value. However, due to an error in _rename_genome_ref.awk_, we observed mismatch between transcript ID and genes common names. We therefore used the correspondance between Transcript ID and Ensembl names of the genes obtained from the blast output and then searched for common names of genes from the Ensembl names on the Ensembl database. 
 
 
