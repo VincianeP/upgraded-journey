@@ -110,3 +110,7 @@ We see that the second component efficiently separates the samples on the skin c
 We recovered 16 genes upregulated in orange skin with a adjusted p-value <1e-10, and 14 downregulated genes in orange skin with an adjusted p-value <1e-10. We used the blast output to recover gene names from Trinity transcript ID of the top differentially expressed genes (meaning those with the lower adjusted p-value. However, due to an error in _rename_genome_ref.awk_, we observed mismatch between transcript ID and genes common names. We therefore used the correspondance between Transcript ID and Ensembl names of the genes obtained from the blast output and then searched for common names of genes from the Ensembl names on the Ensembl database. 
 
 
+```
+
+```
+
