@@ -1,7 +1,7 @@
 # TP NGS clownfish 2020
 
 ## Scientific question 
-White tissues in Actinopterygean fishes can be due to iridophores (reflective tissue) or leucophores (white tissue). Fir instance, zebra fish _Danio rerio_'s white stripes are due to iridophores, whereas  
+White tissues in Actinopterygean fishes can be due to iridophores (reflective tissue) or leucophores (white tissue). For instance, zebra fish _Danio rerio_'s white stripes are due to iridophores, whereas  
 
 ![screenshot](clownfish.jpeg) 
 ### Dataset used 
@@ -55,7 +55,7 @@ Different values of "k" (25, 27 and 29) were used in the group to see which enab
 Code named _salmon.sh_
 
 ### Annotation of the transcripts
-We now want to annotate the transcripts, so we can ... 
+We now want to annotate the transcripts, so we can link our results (quantification of trabscripts expression) with known genes of _S.partitus_. 
 We will annotate the transcript by blasting them with the closest available reference genome, which in our case is _S.partitus_. We therefore have to get the _S.partitus_ genome from Ensembl, to find the likely coding sequence  of the trinity transcripts using Transdecoder, and to blast the likely coding sequence on the _S.partitus_ reference genome.    
 
 #### Downloading the closest available reference genome 
@@ -68,10 +68,33 @@ We then renamed the downloaded reference genome to keep the Ensembl identifier (
 Code named _rename_genome_ref.awk_
 
 #### Identification of coding sequences on the transcripts
-We used TransDecoder to identify coding sequences in the trnascripts assembled by trinity. Transdecoder works in three steps, with the second one being optionnal (which was skipped here). TransDecoder.LongOrfs identifies ORF (ie recognizes start and stop codon on the transcript) and TransDecoder.Predict was used to keep the ORF most likely to be the actual coding sequence by transcript . Here we used TransDecoder.Predict to keep the longest ORF, assuming that the longest ORF is the most likely to be the actual coding sequence.
+We used TransDecoder to identify coding sequences in the transcripts assembled by trinity. Transdecoder works in three steps, with the second one being optionnal (which was skipped here). TransDecoder.LongOrfs identifies ORF (ie recognizes start and stop codon on the transcript) and TransDecoder.Predict was used to keep the ORF most likely to be the actual coding sequence by transcript . Here we used TransDecoder.Predict to keep the longest ORF, assuming that the longest ORF is the most likely to be the actual coding sequence.
 
 We used the option "-S" because the transcripts are strand-specific (because they reconstituted from strand-specific RNA-seq data) and "--gene_trans_map" (used later on) for TransDecoder.LongOrfs. 
 
 Code named _transdecoder.sh_
 
 #### Blast 
+We blasted coding sequences (found by TransDecoder) on the _S.partitus_ genome database. 
+The code works in two steps, with the first step consisting of creating a _S;partitus_ genome database in a format usable by blast with the function _makeblastdb_, and the second step being the blast in itself. 
+Code named _blast.sh_
+
+### Differential expression analysis 
+We used DESeq2 to analyze differential expression of transcripts between the orange and the white condition. ...
+The code is written in R language. 
+
+We only keep the expressed genes for the statistical analysis (which in our case does not exclude any genes, since the transcripts have been assembled _de novo_ from the data). 
+
+We chose to use the "white" condition as a reference for further analysis. 
+
+#### MA plot construction 
+A MA plot is graph showing the log2FoldChange of transcripts as a function of log10(baseMean). 
+
+Both the function _results_ and _lfcShrink_ were used in this analysis, in order to compare them. _results_ shows a log2FoldChange dependent on log10(baseMean), whereas this relation is weakened with the function _lfcShrink_. This ...
+
+#### Volcano plot construction 
+A volcano plot is a graph showing the -log10(padj) as a function of log2FoldChange. we therefore see in the upper left part of the graph genes significatively less expressed in orange skin (and reciprocally more expressed in white skin), and in the upper right part genes significantly more expressed in orange skin (and less expressed in white skin). 
+
+#### Manual annotation of top differentially expressed genes
+
+
