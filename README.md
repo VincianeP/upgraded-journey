@@ -1,7 +1,9 @@
 # TP NGS clownfish 2020
 
 ## Scientific question 
-White tissues in Actinopterygean fishes can be due to iridophores (reflective tissue) or leucophores (white tissue). For instance, zebra fish _Danio rerio_'s white stripes are due to iridophores, whereas  
+Color pattern is an extremely important ecological factor in fishes, with impact on mating, camouflage, _etc_. 
+White tissues in Actinopterygean fishes can be due to iridophores (reflective tissue) or leucophores (white tissue). For instance, zebra fish _Danio rerio_'s white stripes are due to iridophores, whereas different white tissues of cuttlefish are due to various combination of leucophores and iridophores. 
+in this study, we will analyze RNA-seq data to determine whether _Amphiprion ocellaris_ white stripes are composed of leucophores or iridohpores, and to further analyze genes differentially expressed in the white stripes compared to the orange stripes. 
 
 ![screenshot](clownfish.jpeg) 
 ### Dataset used 
@@ -11,7 +13,9 @@ We analyzed RNA-seq data from 6 different conditions:
 * SRR7591066 - Orange skin - ind 1
 * SRR7591067 - Orange skin - ind 3
 * SRR7591068 - White skin - ind 1
-* SRR7591069 - White skin - ind 1
+* SRR7591069 - White skin - ind 2
+
+We have 3 replicates for each condition. 
 
 ### Reference of the paper
 _add the ref_
@@ -80,17 +84,16 @@ The code works in two steps, with the first step consisting of creating a _S;par
 Code named _blast.sh_
 
 ### Differential expression analysis 
-We used DESeq2 to analyze differential expression of transcripts between the orange and the white condition. ...
-The code is written in R language. 
-
-We only keep the expressed genes for the statistical analysis (which in our case does not exclude any genes, since the transcripts have been assembled _de novo_ from the data). 
+We used DESeq2 to analyze differential expression of transcripts between the orange and the white condition, because classical statistical approach can not be used with the low number of replicates we have (three in this case). 
+DESeq2 corrects the dispersion of individual gene count so it fits the expected curve of dispersion as a function of gene count. It also takes into account the fact that multiple tests are done, and so corrects the p-value to take into account the expected false positive due to the multiplicity of tests.  
+DESeq2 being part of a R package, the code is written in R language. 
 
 We chose to use the "white" condition as a reference for further analysis. 
 
 #### MA plot construction 
 A MA plot is graph showing the log2FoldChange of transcripts as a function of log10(baseMean). 
 
-Both the function _results_ and _lfcShrink_ were used in this analysis, in order to compare them. _results_ shows a log2FoldChange dependent on log10(baseMean), whereas this relation is weakened with the function _lfcShrink_. This ...
+Both the function _results_ and _lfcShrink_ type "apeglm" were used in this analysis, in order to compare them. _results_ shows a log2FoldChange dependent on log10(baseMean), whereas this relation is weakened with the function _lfcShrink_. This ...
 
 _add an image_
 
