@@ -46,11 +46,11 @@ ggplot(data=as.data.frame(res), mapping=aes(x=log10(baseMean),y=log2FoldChange))
 resLFC<-lfcShrink(dds, coef = "condition_orange_vs_white", type = "apeglm")
 maplot <- ggplot(data = as.data.frame(resLFC), mapping=aes(x=log10(baseMean),
                                                  y=log2FoldChange, 
-                                                 color=padj<0.05,
-                                                 size=padj<0.05, 
-                                                 shape=padj<0.05,
-                                                 alpha=padj<0.05,
-                                                 fill=padj<0.05,)) + 
+                                                 color=padj<1e-20,
+                                                 size=padj<1e-20, 
+                                                 shape=padj<1e-20,
+                                                 alpha=padj<1e-20,
+                                                 fill=padj<1e-20,)) + 
   geom_point() + 
   scale_color_manual(values=c("#999999","#FF6600")) +
   scale_size_manual(values=c(0.1,1)) +
@@ -83,4 +83,10 @@ top_sorted_DE_pos <- top_DE_pos[order(top_DE_pos$padj),]
 
 #Plot PCA
 rld <- rlog(dds, blind=FALSE)
-plotPCA(rld, intgroup=c("condition"))
+plotPCA(rld, intgroup=c("condition")) + 
+  theme_bw()
+  
+
+                  
+
+        
