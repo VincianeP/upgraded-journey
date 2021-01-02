@@ -95,7 +95,7 @@ A MA plot is graph showing the log2FoldChange of transcripts as a function of lo
 
 Both the function _results_ and _lfcShrink_ type "apeglm" were used in this analysis, in order to compare them. _results_ shows a log2FoldChange dependent on log10(baseMean), whereas this relation is weakened with the function _lfcShrink_. This ...
 
-![screenshot](MAplot annoté 1e-20.JPG) 
+![screenshot](MAplot_1e-20.JPG) 
 
 #### Volcano plot construction 
 A volcano plot is a graph showing the -log10(padj) as a function of log2FoldChange. we therefore see in the upper left part of the graph genes significatively less expressed in orange skin (and reciprocally more expressed in white skin), and in the upper right part genes significantly more expressed in orange skin (and less expressed in white skin). 
