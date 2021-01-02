@@ -104,7 +104,7 @@ _add an image_
 
 #### PCA construction
 
-_add an image_
+![screenshot](PCA.png) 
 
 We see that the second component efficiently separates the samples on the skin color. However, it might be surprising to see at first that the principal component seem to separate individuals within a same skin color. This means that the variation between individuals is great in this experiment, likely because the individuals do not come from an homogenous genetic background.  
 
