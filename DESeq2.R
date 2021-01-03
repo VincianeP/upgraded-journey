@@ -72,15 +72,16 @@ volcano_plot <- ggplot(data=as.data.frame(resLFC), mapping=aes(x=log2FoldChange,
 #Sortir les gènes différentiellement exprimés 
 resLFC[is.na(resLFC$pvalue),"pvalue"] <- 1
 resLFC[is.na(resLFC$padj),"padj"] <- 1
-top_DE_genes <- resLFC[resLFC$padj<1e-20 & abs(resLFC$log2FoldChange)>2,]
+top_DE_genes_20 <- resLFC[resLFC$padj<1e-20 & abs(resLFC$log2FoldChange)>2,]
 
-top_DE_neg <- top_DE_genes[top_DE_genes$log2FoldChange<0,] #14 genes
-top_DE_pos <- top_DE_genes[top_DE_genes$log2FoldChange>0,] #16 genes
+top_DE_neg_20 <- top_DE_genes_20[top_DE_genes_20$log2FoldChange<0,] #14 genes
+top_DE_pos_20 <- top_DE_genes_20[top_DE_genes_20$log2FoldChange>0,] #16 genes
 
-top_sorted_DE_neg <- top_DE_neg[order(top_DE_neg$padj),]
-top_sorted_DE_pos <- top_DE_pos[order(top_DE_pos$padj),]
+top_sorted_DE_neg_20 <- top_DE_neg_20[order(top_DE_neg_20$padj),]
+top_sorted_DE_pos_20 <- top_DE_pos_20[order(top_DE_pos_20$padj),]
 
-
+#NB: the same tables of top DE genes can be done with another adjusted p-value threshold. 
+#With a threshold of padj<0.05 we find 154 downregulated genes and 147 upregulated genes
 #Plot PCA
 rld <- rlog(dds, blind=FALSE)
 plotPCA(rld, intgroup=c("condition")) + 
