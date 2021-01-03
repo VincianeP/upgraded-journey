@@ -14,7 +14,8 @@ We analyzed RNA-seq data from 6 different conditions:
 * SRR7591066 - Orange skin - ind 1
 * SRR7591067 - Orange skin - ind 3
 * SRR7591068 - White skin - ind 1
-* SRR7591069 - White skin - ind 2  
+* SRR7591069 - White skin - ind 2 
+
 We have 3 replicates for each condition. 
 
 ### Reference of the paper
@@ -36,6 +37,8 @@ Code named _fastqc.sh_
 Check the quality of the reads for all files at once using multiqc.  
 Code named _multiqc_
 
+The summary of the multiqc analysis is shown below (similar results were found with each individual fastqc):
+
 ![screenshot](multiqc_rapport.png) 
 
 The parameters flagged by fastqc and multiqc are: 
@@ -47,12 +50,11 @@ Except the unsolvable problem of RT primers, the reads have an overall good qual
 ### _De novo_ assembly of the reads 
 We want to assemble all the reads in transcripts. This can be done by mapping the reads to a reference genome, or by a _de novo_ transcriptome assembly. In this case, we have a reference genome available for _A. ocellaris_, but we will reproduce the analysis done in the paper.   
 
-We assembled the reads from all FASTQ files to get a transcriptome using Trinity. 
-
-The Illumina sequencing performed generated single-end (--single) and strand-specific R (--SS_lib_type R) reads, so we have to specify these options to Trinity.
+We assembled the reads from all FASTQ files to get a transcriptome using Trinity. The Illumina sequencing performed generated single-end (--single) and strand-specific R (--SS_lib_type R) reads, so we have to specify these options to Trinity.  
 Code named _trinity.sh_
 
-Example of transcript we get after the transcriptome assembly by trinity: *add an image?*
+Example of transcript we get after the transcriptome assembly by Trinity: 
+![screenshot](Trinity_ex.JPG)
 
 ### Quantification of the expression level of the mRNA
 Quantifies the level of expression of each Trinity transcript using salmon. Salmon works in two steps, with first salmon index, which indexes the Trinity transcriptome and salmon quant ,  which count how many reads map to each transcript.
