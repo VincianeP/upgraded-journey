@@ -57,33 +57,32 @@ Example of transcript we get after the transcriptome assembly by Trinity:
 ![screenshot](Trinity_ex.JPG)
 
 ### Quantification of the expression level of the mRNA
-Quantifies the level of expression of each Trinity transcript using salmon. Salmon works in two steps, with first salmon index, which indexes the Trinity transcriptome and salmon quant ,  which count how many reads map to each transcript.
-Different values of "k" (25, 27 and 29) were used in the group to see which enabled the best alignment: a 25-mer turned to provide the best alignment. All tried values showed alignment between 92.5% and 96%, which is satisfactory. 
+Quantifies the level of expression of each Trinity transcript using salmon. Salmon works in two steps, with first salmon index, which indexes the Trinity transcriptome and salmon quant,  which count how many reads map to each transcript.  
+Different values of "k" (25, 27 and 29) were used in the group to see which enabled the best alignment: a 25-mer turned to provide the best alignment (which is expected, as it is less stringent). All tried values showed alignment between 92.5% and 96%, which is satisfactory.  
 Code named _salmon.sh_
 
 ### Annotation of the transcripts
-We now want to annotate the transcripts, so we can link our results (quantification of trabscripts expression) with known genes of _S.partitus_. 
+We now want to annotate the transcripts, so we can link our results (quantification of transcripts expression) with known genes of _S.partitus_. 
 We will annotate the transcript by blasting them with the closest available reference genome, which in our case is _S.partitus_. We therefore have to get the _S.partitus_ genome from Ensembl, to find the likely coding sequence  of the trinity transcripts using Transdecoder, and to blast the likely coding sequence on the _S.partitus_ reference genome.    
 
 #### Downloading the closest available reference genome 
 
 We downloaded the _S.partitus_ genome (coding sequence) from Ensembl (release 102).
-The data were available on ftp.ensembl.org, and we downloaded them using wget.  
+The data were available on _ftp.ensembl.org_, and we downloaded them using wget.  
 Code named _get_ref_genome.sh_
 
 We then renamed the downloaded reference genome to keep the Ensembl identifier (starting with ENS) (gene) and the name of the gene (gene_symbol) when there is one. This was done with an awk code.  
 Code named _rename_genome_ref.awk_
 
 #### Identification of coding sequences on the transcripts
-We used TransDecoder to identify coding sequences in the transcripts assembled by trinity. Transdecoder works in three steps, with the second one being optionnal (which was skipped here). TransDecoder.LongOrfs identifies ORF (ie recognizes start and stop codon on the transcript) and TransDecoder.Predict was used to keep the ORF most likely to be the actual coding sequence by transcript . Here we used TransDecoder.Predict to keep the longest ORF, assuming that the longest ORF is the most likely to be the actual coding sequence.
+We used TransDecoder to identify coding sequences in the transcripts assembled by Trinity. Transdecoder works in three steps, with the second one being optionnal (which was skipped here). TransDecoder.LongOrfs identifies ORF (ie recognizes start and stop codon on the transcript) and TransDecoder.Predict was used to keep the ORF most likely to be the actual coding sequence by transcript. Here we used TransDecoder.Predict to keep the longest ORF, assuming that the longest ORF is the most likely to be the actual coding sequence.
 
-We used the option "-S" because the transcripts are strand-specific (because they reconstituted from strand-specific RNA-seq data) and "--gene_trans_map" (used later on) for TransDecoder.LongOrfs. 
-
+We used the option "-S" because the transcripts are strand-specific (because they reconstituted from strand-specific RNA-seq data) and "--gene_trans_map" (used later on) for TransDecoder.LongOrfs.  
 Code named _transdecoder.sh_
 
 #### Blast 
 We blasted coding sequences (found by TransDecoder) on the _S.partitus_ genome database. 
-The code works in two steps, with the first step consisting of creating a _S;partitus_ genome database in a format usable by blast with the function _makeblastdb_, and the second step being the blast in itself. 
+The code works in two steps, with the first step consisting of creating a _S.partitus_ genome database in a format usable by blast with the function _makeblastdb_, and the second step being the blast in itself.  
 Code named _blast.sh_
 
 ### Differential expression analysis 
@@ -96,14 +95,15 @@ We chose to use the "white" condition as a reference for further analysis.
 #### MA plot construction 
 A MA plot is graph showing the log2FoldChange of transcripts as a function of log10(baseMean). 
 
-Both the function _results_ and _lfcShrink_ type "apeglm" were used in this analysis, in order to compare them. _results_ shows a log2FoldChange dependent on log10(baseMean), whereas this relation is weakened with the function _lfcShrink_. This ...
+Both the function _results_ and _lfcShrink_ type "apeglm" were used in this analysis, in order to compare them. _results_ shows a log2FoldChange dependent on log10(baseMean), whereas this relation is weakened with the function _lfcShrink_, which corrects this defect observed when the number of replicates is low. We will therefore use _lfcShrink_ in the following steps. 
 
+Here is the MA plot obtained with the _lfcShrink_ function. Genes with an adjusted p-value inferior to 1e-20 are colored in orange, others are small blue points.
 ![screenshot](MAplot_1e-20.JPG) 
 
 #### Volcano plot construction 
-A volcano plot is a graph showing the -log10(padj) as a function of log2FoldChange. we therefore see in the upper left part of the graph genes significatively less expressed in orange skin (and reciprocally more expressed in white skin), and in the upper right part genes significantly more expressed in orange skin (and less expressed in white skin). 
+A volcano plot is a graph showing the -log10(padj) as a function of log2FoldChange. We therefore see in the upper left part of the graph genes significatively less expressed in orange skin (and reciprocally more expressed in white skin), and in the upper right part genes significantly more expressed in orange skin (and less expressed in white skin). 
 
-_add an image_
+![screenshot](volcano_annote.JPG) 
 
 #### PCA construction
 
