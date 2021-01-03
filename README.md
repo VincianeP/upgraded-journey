@@ -2,7 +2,7 @@
 
 ## Scientific question 
 Color pattern is an extremely important ecological factor in fishes, with impact on mating, camouflage, _etc_. 
-White tissues in Actinopterygean fishes can be due to iridophores (reflective tissue) or leucophores (white tissue). For instance, zebra fish _Danio rerio_'s white stripes are due to iridophores, whereas different white tissues of cuttlefish are due to various combination of leucophores and iridophores. 
+White tissues in Actinopterygean fishes can be due to iridophores (reflective tissue) or leucophores (white tissue). For instance, zebra fish _Danio rerio_'s white stripes are due to iridophores, whereas different white tissues of cuttlefish are due to various combination of leucophores and iridophores.  
 In this study, we will analyze RNA-seq data to determine whether _Amphiprion ocellaris_ white stripes are composed of leucophores or iridohpores, and to further analyze genes differentially expressed in the white stripes compared to the orange stripes. 
 
 ![screenshot](clownfish.jpeg) 
@@ -14,12 +14,12 @@ We analyzed RNA-seq data from 6 different conditions:
 * SRR7591066 - Orange skin - ind 1
 * SRR7591067 - Orange skin - ind 3
 * SRR7591068 - White skin - ind 1
-* SRR7591069 - White skin - ind 2
+* SRR7591069 - White skin - ind 2  
 We have 3 replicates for each condition. 
 
 ### Reference of the paper
 
-Salis P, Lorin T, Lewis V, Rey C, Marcionetti A, Escande M-L, Roux N, Besseau L, Salamin N, Sémon M, et al.: *Developmental and comparative transcriptomic identification of iridophore contribution to white barring in clownfish.* _Pigment Cell & Melanoma Research_ 2019, *32*:391–402.
+Salis P, Lorin T, Lewis V, Rey C, Marcionetti A, Escande M-L, Roux N, Besseau L, Salamin N, Sémon M, et al.: **Developmental and comparative transcriptomic identification of iridophore contribution to white barring in clownfish.** _Pigment Cell & Melanoma Research_ 2019, **32**:391–402.
 
 ## Steps of the analysis:
 
@@ -30,10 +30,10 @@ Code named _download_fastq.sh_
 SRR accession codes of the data used: SRR7591064, SRR7591065, SRR7591066, SRR7591067, SRR7591068, and SRR7591069
 
 ### Checking the quality of the reads
-Check the quality of the reads for each file individually in a for loop using fastqc.
+Check the quality of the reads for each file individually in a for loop using fastqc.  
 Code named _fastqc.sh_
 
-Check the quality of the reads for all files at once using multiqc. 
+Check the quality of the reads for all files at once using multiqc.  
 Code named _multiqc_
 
 ![screenshot](multiqc_rapport.png) 
