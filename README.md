@@ -105,20 +105,28 @@ A volcano plot is a graph showing the -log10(padj) as a function of log2FoldChan
 
 ![screenshot](volcano_annote.JPG) 
 
+The graph shown above was manually annoted with the seven genes found in common between our results and the paper's results. See below for more explanation on the manual annotation.
+
 #### PCA construction
 
+We then plotted a PCA of our 6 samples for standard checking.  
 ![screenshot](PCA.png) 
 
 We see that the second component efficiently separates the samples on the skin color. However, it might be surprising to see at first that the principal component seem to separate individuals within a same skin color. This means that the variation between individuals is great in this experiment, likely because the individuals do not come from an homogenous genetic background.  
 
 #### Manual annotation of top differentially expressed genes
 
-We recovered 16 genes upregulated in orange skin with a adjusted p-value <1e-10, and 14 downregulated genes in orange skin with an adjusted p-value <1e-10. We used the blast output to recover gene names from Trinity transcript ID of the top differentially expressed genes (meaning those with the lower adjusted p-value. However, due to an error in _rename_genome_ref.awk_, we observed mismatch between transcript ID and genes common names. We therefore used the correspondance between Transcript ID and Ensembl names of the genes obtained from the blast output and then searched for common names of genes from the Ensembl names on the Ensembl database. 
+The next step is to link our top differentially expressed transcripts and their actual names, so we can link the results with the genes' biological function, annotate new genes, or in our case compare our results with the paper.
+
+We recovered 16 genes upregulated in orange skin with a adjusted p-value <1e-10, and 14 downregulated genes in orange skin with an adjusted p-value <1e-10. We used the blast output to recover gene names from Trinity transcript ID of the top differentially expressed genes (meaning those with the lower adjusted p-value). However, due to an error in _rename_genome_ref.awk_, we observed mismatch between transcript ID and genes common names. We therefore used the correspondance between Transcript ID and Ensembl names of the genes obtained from the blast output and then searched for common names of genes from the Ensembl names on the Ensembl database. 
 
 This allows us to compare our results with the results found in the paper. 
-It must be noted that our analysis differ from the paper in some ways. For instance, we used the function _lfcShrink_ whereas the authors used the function _results_. Other differences include some options (I used a k=29 _check_ for instance) and updates of the softwares between the time the paper was written and December 2020. Despite these small differences in the analysis, we overall find similar top differentially expressed genes: 7 of our top 10 differentially expressed genes are found in the paper's top 10 differentially expressed genes. We also found in our result the gene _saiyan_, which was further analyzed in the paper. Overall, our results our consistent  
+It must be noted that our analysis differ from the paper in some ways. For instance, we used the function _lfcShrink_ whereas the authors used the function _results_. Other differences include some options (I used a k=29 _check_ for instance) and updates of the softwares between the time the paper was written and December 2020. Despite these small differences in the analysis, we overall find similar top differentially expressed genes: 7 of our top 10 differentially expressed genes are found in the paper's top 10 differentially expressed genes. We also found in our result the gene _saiyan_, which was further analyzed in the paper. Overall, our results are consistent with the paper. 
 
-```
 
-```
+##Acknowledgments
+
+I would like to thank Corentin for his patience and very clear explanation and Marie for organizing a really intersting and nice practical. I would also like to thank Paul Thienpont, Marthe Priouret and Miguel Camacho for their help and jokes in coding, understanding the softwares and formating this README. 
+
+Finally, I would like to NOT thank the pandemic for stopping us from having two nice  "goûters", but would like to thank one more time everyone who took part in the organisation of this practical. 
 
