@@ -123,11 +123,12 @@ When changing the threshold, we found a number of 147 upregulated genes in orang
 
 We used the blast output to recover gene names from Trinity transcript ID of the top differentially expressed genes (meaning those with the lower adjusted p-value). However, due to an error in _rename_genome_ref.awk_, we observed mismatch between transcript ID and genes common names. We therefore used the correspondance between Transcript ID and Ensembl names of the genes obtained from the blast output and then searched for common names of genes from the Ensembl names on the Ensembl database. 
 
-This allows us to compare our results with the results found in the paper. 
+## Conclusion
+
 It must be noted that our analysis differ from the paper in some ways. For instance, we used the function _lfcShrink_ whereas the authors used the function _results_. Other differences include some options (I used a k=29 _check_ for instance) and updates of the softwares between the time the paper was written and December 2020. Despite these small differences in the analysis, we overall find similar top differentially expressed genes: 7 of our top 10 differentially expressed genes are found in the paper's top 10 differentially expressed genes. We also found in our result the gene _saiyan_, which was further analyzed in the paper. Moreover, we found 3 of the 12 genes shared between _A.ocellaris_ white skin and _D.rerio_ iridophores in our top 10 differentially expressed genes (these genes being _saiyan_, _apoD1a_ and _gpnmb_). Overall, our results are consistent with the paper, and suggest that white stripes of _A.ocellaris_ are due to iridophores. 
 
 
-##Acknowledgments
+## Acknowledgments
 
 I would like to thank Corentin for his patience and very clear explanation and Marie for organizing a really intersting and nice practical. I would also like to thank Paul Thienpont, Marthe Priouret and Miguel Camacho for their help and jokes in coding, understanding the softwares and formating this README. 
 
